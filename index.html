@@ -32,12 +32,18 @@
       </table>
       <div id="totalDisplay">Total: ₱0.00</div>
       <button id="newTransBtn">Complete & New Transaction</button>
-      <div id="history" class="admin-only">
-        <h3>History (Today)</h3>
-        <div id="historyList"></div>
-      </div>
     </div>
   </div>
+  <script>
+    // Redirect if not authenticated as admin
+    if (window.location.pathname.includes("admin")) {
+      const isLoggedIn = localStorage.getItem("isAdmin") === "true";
+      if (!isLoggedIn) {
+        alert("Access denied. Please login as admin.");
+        window.location.href = "/login.html";
+      }
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
