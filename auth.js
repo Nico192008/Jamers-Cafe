@@ -1,45 +1,56 @@
-// Simple admin credentials (hardcoded for demo)
-const ADMIN_USERNAME = "admin";
-const ADMIN_PASSWORD = "password123";
+// auth.js
+import { auth } from "./firebase-config.js";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 
-const isAdminLoggedIn = () => {
-  return localStorage.getItem("isAdmin") === "true";
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// Login function - admin email & password based
+export const loginAdmin = (email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      window.location.href = "admin.html";
+    })
+    .catch(() => {
+      alert("Invalid credentials");
+    });
 };
 
-const protectAdminPage = () => {
-  if (!isAdminLoggedIn()) {
+// Logout function
+export const logoutAdmin = () => {
+  signOut(auth).then(() => {
     window.location.href = "login.html";
-  }
+  });
 };
 
-const loginAdmin = (username, password) => {
-  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-    localStorage.setItem("isAdmin", "true");
-    window.location.href = "admin.html";
-  } else {
-    alert("Invalid credentials");
-  }
+// Protect admin page (redirect if not logged in)
+export const protectAdminPage = () => {
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
+  });
 };
 
-const logoutAdmin = () => {
-  localStorage.removeItem("isAdmin");
-  window.location.href = "login.html";
-};
-
-// On login.html
+// For login page
 if (window.location.pathname.endsWith("login.html")) {
-  document.getElementById("loginBtn").addEventListener("click", () => {
-    const username = document.getElementById("username").value.trim();
+  loginBtn.addEventListener("click", () => {
+    const email = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
-    loginAdmin(username, password);
+    loginAdmin(email, password);
   });
 }
 
-// On admin.html
+// For admin page
 if (window.location.pathname.endsWith("admin.html")) {
   protectAdminPage();
-
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    logoutAdmin();
-  });
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      logoutAdmin();
+    });
+  }
 }
