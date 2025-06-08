@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jamers Café POS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Jamers Café POS System</header>
+
+  <div class="container">
+    <!-- PRODUCTS PANEL -->
+    <div class="panel" id="productsPanel">
+      <h2>Products</h2>
+      <label for="qtyInput"><b>Quantity:</b></label>
+      <input type="number" id="qtyInput" placeholder="e.g. 1" min="1" value="1" />
+
+      <div class="product-buttons" id="productButtons"></div>
+
+      <!-- Add product button links to admin -->
+      <button id="adminPanelBtn" style="margin-top:15px; width:100%; padding:10px; font-weight:bold; background:#4b2e1e; color:#fff; border:none; border-radius:8px; cursor:pointer;">Go to Admin Panel</button>
+    </div>
+
+    <!-- CART PANEL -->
+    <div class="panel" id="cartPanel">
+      <h2>Cart / Receipt</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>₱ Each</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cartBody"></tbody>
+      </table>
+      <div id="totalDisplay">Total: ₱0.00</div>
+      <button id="newTransBtn">Complete & New Transaction</button>
+
+      <div id="summary">
+        <h3>Sales Summary</h3>
+        <div id="dailyTotal">Today: ₱0.00</div>
+        <div id="monthlyTotal">This Month: ₱0.00</div>
+        <div id="yearlyTotal">This Year: ₱0.00</div>
+      </div>
+
+      <div id="history">
+        <h3>History (Today)</h3>
+        <div id="historyList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="pos.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jamers Café POS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Jamers Café POS System</header>
+
+  <div class="container">
+    <!-- PRODUCTS PANEL -->
+    <div class="panel" id="productsPanel">
+      <h2>Products</h2>
+      <label for="qtyInput"><b>Quantity:</b></label>
+      <input type="number" id="qtyInput" placeholder="e.g. 1" min="1" value="1" />
+
+      <div class="product-buttons" id="productButtons"></div>
+
+      <!-- Add product button links to admin -->
+      <button id="adminPanelBtn" style="margin-top:15px; width:100%; padding:10px; font-weight:bold; background:#4b2e1e; color:#fff; border:none; border-radius:8px; cursor:pointer;">Go to Admin Panel</button>
+    </div>
+
+    <!-- CART PANEL -->
+    <div class="panel" id="cartPanel">
+      <h2>Cart / Receipt</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>₱ Each</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cartBody"></tbody>
+      </table>
+      <div id="totalDisplay">Total: ₱0.00</div>
+      <button id="newTransBtn">Complete & New Transaction</button>
+
+      <div id="summary">
+        <h3>Sales Summary</h3>
+        <div id="dailyTotal">Today: ₱0.00</div>
+        <div id="monthlyTotal">This Month: ₱0.00</div>
+        <div id="yearlyTotal">This Year: ₱0.00</div>
+      </div>
+
+      <div id="history">
+        <h3>History (Today)</h3>
+        <div id="historyList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="pos.js"></script>
+</body>
+</html>
