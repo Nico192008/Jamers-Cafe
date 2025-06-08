@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Jamers Café POS</title>
@@ -6,44 +7,55 @@
 </head>
 <body>
   <header>
-    <div>Jamers Café POS System</div>
+    <div>Jamers Café POS</div>
     <div id="clock"></div>
+    <button id="logoutBtn">Logout</button>
   </header>
+
   <div class="container">
-    <div class="panel" id="productsPanel">
+    <section class="panel">
       <h2>Products</h2>
-      <label for="qtyInput"><b>Quantity:</b></label>
-      <input type="number" id="qtyInput" placeholder="e.g. 1" min="1" value="1">
-      <div class="product-buttons" id="productButtons"></div>
-    </div>
-    <div class="panel" id="cartPanel">
-      <h2>Cart / Receipt</h2>
+      <input
+        type="number"
+        id="qtyInput"
+        placeholder="Quantity"
+        min="1"
+        value="1"
+      />
+      <div id="productButtons" class="product-buttons"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Cart</h2>
       <table>
         <thead>
           <tr>
             <th>Product</th>
-            <th>₱ Each</th>
+            <th>Price (₱)</th>
             <th>Qty</th>
-            <th>Subtotal</th>
+            <th>Subtotal (₱)</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody id="cartBody"></tbody>
       </table>
       <div id="totalDisplay">Total: ₱0.00</div>
-      <button id="newTransBtn">Complete & New Transaction</button>
-    </div>
+      <button id="newTransBtn">Complete Transaction</button>
+
+      <div id="summary">
+        <div id="dailyTotal">Today: ₱0.00</div>
+        <div id="monthlyTotal">This Month: ₱0.00</div>
+        <div id="yearlyTotal">This Year: ₱0.00</div>
+      </div>
+
+      <div id="history">
+        <h3>Today's Transactions</h3>
+        <div id="historyList"></div>
+      </div>
+    </section>
   </div>
-  <script>
-    // Redirect if not authenticated as admin
-    if (window.location.pathname.includes("admin")) {
-      const isLoggedIn = localStorage.getItem("isAdmin") === "true";
-      if (!isLoggedIn) {
-        alert("Access denied. Please login as admin.");
-        window.location.href = "/login.html";
-      }
-    }
-  </script>
-  <script src="script.js"></script>
+
+  <script type="module" src="pos.js"></script>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
